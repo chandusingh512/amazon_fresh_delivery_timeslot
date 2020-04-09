@@ -1,0 +1,83 @@
+import bs4
+import os
+import sys
+import time
+from selenium import webdriver
+from selenium.common.exceptions import NoSuchElementException
+from twilio.rest import Client
+
+# Amazon credentials
+username = "username"
+password = "password"
+
+# Twilio configuration
+##toNumber = "to phone number"
+##fromNumber = "from phone number"
+##accountSid = "twilio sid"
+##authToken = "twilio token"
+##client = Client(accountSid, authToken)
+
+def reserveATimeSlot():
+    driver = createDriver()
+    navigateToShipOptions(driver)
+    while True:
+        html = driver.page_source
+        soup = bs4.BeautifulSoup(html, 'html.parser')
+        try:
+            findSlots = soup.find_all('div', class_ ='ufss-slot-price-container')
+            for slot in findSlots:
+                if "Not Avaiable" in slot.get_text():
+                    pass
+                else:
+                    try:
+                        client.messages.create(to=toNumber,from_=fromNumber,body='SLOTS OPEN!')
+                    except:
+                        pass
+                    print('SLOTS OPEN!')
+                    os.system('play -nq -t alsa synth {} sine {}'.format(duration, freq))
+                    time.sleep(1800)
+                    break
+        except AttributeError:
+            pass
+        timeSleep(60, driver)
+
+
+def timeSleep(x, driver):
+    for remaining in range(x, -1, -1):
+        sys.stdout.write("\r")
+        sys.stdout.write('{:2d} seconds remaining.'.format(remaining))
+        sys.stdout.flush()
+        time.sleep(1)
+    driver.refresh()
+    print("\nPage refreshed")
+
+def createDriver():
+    chromeOpts = webdriver.ChromeOptions()
+    chromeOpts.add_argument("--incognito")
+    driver = webdriver.Chrome("chromedriver", options=chromeOpts)
+    return driver
+
+def navigateToShipOptions(driver):
+    driver.get('https://www.amazon.com/gp/sign-in.html')
+    usernameField = driver.find_element_by_css_selector('#ap_email')
+    usernameField.send_keys(username)
+    driver.find_element_by_css_selector('#continue').click()
+    time.sleep(1.5)
+    passwordField = driver.find_element_by_css_selector('#ap_password')
+    passwordField.send_keys(password)
+    driver.find_element_by_css_selector('#signInSubmit').click()
+    time.sleep(1.5)
+    driver.get('https://www.amazon.com/alm/storefront?almBrandId=QW1hem9uIEZyZXNo')
+    time.sleep(1.5)
+    while True:
+        try:
+            driver.find_element_by_name('proceedToFreshCheckout').click()
+            break
+        except:
+            time.sleep(1.5)
+            pass
+    time.sleep(1.5)
+    driver.find_element_by_name('proceedToCheckout').click()
+
+if __name__ == "__main__":
+    reserveATimeSlot()
