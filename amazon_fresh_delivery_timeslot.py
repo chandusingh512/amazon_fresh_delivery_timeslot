@@ -34,7 +34,7 @@ def reserveATimeSlot():
                     except:
                         pass
                     print('SLOTS OPEN!')
-                    os.system('play -nq -t alsa synth {} sine {}'.format(duration, freq))
+                    os.system('play -nq -t alsa synth {} sine {}'.format(1, 440))
                     time.sleep(1800)
                     break
         except AttributeError:
