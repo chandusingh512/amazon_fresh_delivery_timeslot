@@ -6,7 +6,7 @@ Requires: **bs4, selenium, twilio**
 
 
 Download webdriver from: https://chromedriver.chromium.org/  
-Add full path to line 54: ```driver = webdriver.Chrome("path-goes-here:/chromedriver", options=chromeOpts)```  
+Add full path to line: ```driver = webdriver.Chrome("path-goes-here:/chromedriver", options=chromeOpts)```  
 or add location of webdriver to PATH 
 
 Use amazon_fresh_delivery_timeslot_windows.py for Windows  
