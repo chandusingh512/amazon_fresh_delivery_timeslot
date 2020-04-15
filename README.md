@@ -20,7 +20,7 @@ Uncomment and add Twilio configuration to recieve texts when delivery slots are 
 
 
 # Compatible with this page
-![alt_text](https://github.com/wfleisher/amazon_fresh_delivery_timeslot/blob/master/example-page.png)
+![alt_text](https://github.com/wfleisher/amazon_fresh_delivery_timeslot/blob/master/images/example-page.png)
 
 # Example Cli
-![alt_text](https://github.com/wfleisher/amazon_fresh_delivery_timeslot/blob/master/example-cli.png)
+![alt_text](https://github.com/wfleisher/amazon_fresh_delivery_timeslot/blob/master/images/example-cli.png)
