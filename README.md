@@ -5,6 +5,9 @@ Requires: **bs4, selenium, twilio**
 
 Use amazon_fresh_delivery_autobuy.py to automatically checkout when delivery slot is available.
 
+On run script will take login credentials as input and navigate to "Reserve A Time Slot" automatically.
+
+
 Download webdriver from: https://chromedriver.chromium.org/  
 Add full path to line: ```driver = webdriver.Chrome("path-goes-here:/chromedriver", options=chromeOpts)```  
 or add location of webdriver to PATH 
