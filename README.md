@@ -3,12 +3,13 @@ Supports **MacOS, Linux, Windows**.
 Requires: **bs4, selenium, twilio**  
   ```pip install bs4 selenium twilio```  
 
+Use amazon_fresh_delivery_autobuy.py to automatically checkout when delivery slot is available.
 
 Download webdriver from: https://chromedriver.chromium.org/  
 Add full path to line: ```driver = webdriver.Chrome("path-goes-here:/chromedriver", options=chromeOpts)```  
 or add location of webdriver to PATH 
   
-Uncomment and add Twilio configuration to recieve texts when delivery slots are available.
+Uncomment and add Twilio configuration to recieve texts when delivery slots are available or orders have been placed.
 
 
 # Compatible with this page
