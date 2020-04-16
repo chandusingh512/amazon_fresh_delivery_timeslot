@@ -1,6 +1,5 @@
 import bs4
 import os
-import sys
 import time
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException, ElementClickInterceptedException
@@ -66,7 +65,9 @@ def findSlots(driver):
                     try: client.messages.create(to=toNumber,from_=fromNumber,body='SLOTS OPEN!')
                     except NameError: pass
                     print('SLOTS OPEN!')
-                    os.system('play -nq -t alsa synth {} sine {}'.format(1, 440))
+                    for i in range(5):
+                        print("\a")
+                        time.sleep(1)
                     time.sleep(1800)
                     driver.quit()
                     return
