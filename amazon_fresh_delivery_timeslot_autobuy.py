@@ -73,7 +73,6 @@ def findSlots(driver):
             for slot in findAllSlots:
                 if 'Not Avaiable' in slot.get_text():
                     pass
-
                 else:
                     print('SLOTS OPEN!')
                     driverWait(driver, 'css', 'button.a-button-text.ufss-slot-toggle-native-button')
