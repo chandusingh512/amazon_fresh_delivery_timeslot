@@ -5,32 +5,34 @@ from selenium.common.exceptions import NoSuchElementException, ElementClickInter
 from twilio.rest import Client
 
 # Amazon credentials
-username = "username"
-password = "password"
+username = input('Amazon username: ')
+password = input('Amazon password: ')
+##username = 'username'
+##password = 'password'
 
 # Twilio configuration
-##toNumber = "to phone number"
-##fromNumber = "from phone number"
-##accountSid = "twilio sid"
-##authToken = "twilio token"
+##toNumber = 'to phone number'
+##fromNumber = 'from phone number'
+##accountSid = 'twilio sid'
+##authToken = 'twilio token'
 ##client = Client(accountSid, authToken)
 
 def timeSleep(x, driver):
     for i in range(x, -1, -1):
-        sys.stdout.write("\r")
+        sys.stdout.write('\r')
         sys.stdout.write('{:2d} seconds'.format(i))
         sys.stdout.flush()
         time.sleep(1)
     driver.refresh()
-    sys.stdout.write("\r")
-    sys.stdout.write("Page refreshed\n")
+    sys.stdout.write('\r')
+    sys.stdout.write('Page refreshed\n')
     sys.stdout.flush()
 
 def createDriver():
     chromeOpts = webdriver.ChromeOptions()
-    chromeOpts.add_argument("--incognito")
+    chromeOpts.add_argument('--incognito')
     chromeOpts.add_experimental_option('excludeSwitches', ['enable-logging'])
-    driver = webdriver.Chrome("chromedriver", options=chromeOpts)
+    driver = webdriver.Chrome('chromedriver', options=chromeOpts)
     return driver
 
 def navigateToShipOptions(driver):
@@ -58,22 +60,22 @@ def findSlots(driver):
         try:
             findAllSlots = soup.find_all('div', class_ ='ufss-slot-price-container')
             for slot in findAllSlots:
-                if "Not Avaiable" in slot.get_text():
+                if 'Not Avaiable' in slot.get_text():
                     pass
                 else:
                     try: client.messages.create(to=toNumber,from_=fromNumber,body='SLOTS OPEN!')
                     except NameError: pass
                     print('SLOTS OPEN!')
                     for i in range(5):
-                        print("\a")
+                        print('\a')
                         time.sleep(1)
                     time.sleep(1800)
                     driver.quit()
                     return
         except AttributeError: pass
         timeSleep(60, driver)
-    
-if __name__ == "__main__":
+
+if __name__ == '__main__':
     driver = createDriver()
     navigateToShipOptions(driver)
     findSlots(driver)
