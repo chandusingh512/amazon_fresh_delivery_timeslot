@@ -37,23 +37,26 @@ def createDriver():
     driver = webdriver.Chrome('chromedriver', options = chromeOpts)
     return driver
 
+def driverWait(driver, findType, selector):
+    while True:
+        if findType == 'css':
+            try: driver.find_element_by_css_selector(selector).click(); break
+            except NoSuchElementException: driver.implicitly_wait(0.1)
+        elif findType == 'name':
+            try: driver.find_element_by_name(selector).click(); break
+            except NoSuchElementException: driver.implicitly_wait(0.1)
+
 def navigateToShipOptions(driver):
     driver.get('https://www.amazon.com/gp/sign-in.html')
     usernameField = driver.find_element_by_css_selector('#ap_email')
     usernameField.send_keys(username)
-    driver.find_element_by_css_selector('#continue').click()
-    time.sleep(1.5)
+    driverWait(driver, 'css', '#continue')
     passwordField = driver.find_element_by_css_selector('#ap_password')
     passwordField.send_keys(password)
-    driver.find_element_by_css_selector('#signInSubmit').click()
-    time.sleep(1.5)
+    driverWait(driver, 'css', '#signInSubmit')
     driver.get('https://www.amazon.com/alm/storefront?almBrandId=QW1hem9uIEZyZXNo')
-    time.sleep(1.5)
-    while True:
-        try: driver.find_element_by_name('proceedToFreshCheckout').click(); break
-        except: time.sleep(1.5)
-    time.sleep(1.5)
-    driver.find_element_by_name('proceedToCheckout').click()
+    driverWait(driver, 'name', 'proceedToFreshCheckout')
+    driverWait(driver, 'name', 'proceedToCheckout')
 
 def findSlots(driver):
     while True:
