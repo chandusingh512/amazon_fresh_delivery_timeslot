@@ -1,5 +1,4 @@
 import bs4
-import os
 import time
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException, ElementClickInterceptedException
@@ -19,7 +18,7 @@ password = "password"
 def timeSleep(x, driver):
     for i in range(x, -1, -1):
         sys.stdout.write("\r")
-        sys.stdout.write('{:2d} seconds remaining.'.format(i))
+        sys.stdout.write('{:2d} seconds'.format(i))
         sys.stdout.flush()
         time.sleep(1)
     driver.refresh()
