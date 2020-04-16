@@ -1,4 +1,5 @@
 import bs4
+import getpass
 import time
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException, ElementClickInterceptedException
@@ -6,7 +7,7 @@ from twilio.rest import Client
 
 # Amazon credentials
 username = input('Amazon username: ')
-password = input('Amazon password: ')
+password = getpass.getpass()
 ##username = 'username'
 ##password = 'password'
 
@@ -32,7 +33,7 @@ def createDriver():
     chromeOpts = webdriver.ChromeOptions()
     chromeOpts.add_argument('--incognito')
     chromeOpts.add_experimental_option('excludeSwitches', ['enable-logging'])
-    driver = webdriver.Chrome('chromedriver', options=chromeOpts)
+    driver = webdriver.Chrome('chromedriver', options = chromeOpts)
     return driver
 
 def navigateToShipOptions(driver):
@@ -63,7 +64,7 @@ def findSlots(driver):
                 if 'Not Avaiable' in slot.get_text():
                     pass
                 else:
-                    try: client.messages.create(to=toNumber,from_=fromNumber,body='SLOTS OPEN!')
+                    try: client.messages.create(to = toNumber,from_ = fromNumber,body = 'SLOTS OPEN!')
                     except NameError: pass
                     print('SLOTS OPEN!')
                     for i in range(5):
