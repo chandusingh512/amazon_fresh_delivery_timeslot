@@ -1,5 +1,6 @@
 import bs4
 import getpass
+import sys
 import time
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException, ElementClickInterceptedException
