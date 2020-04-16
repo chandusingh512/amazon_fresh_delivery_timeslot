@@ -7,9 +7,7 @@ Requires: **bs4, selenium, twilio**
 Download webdriver from: https://chromedriver.chromium.org/  
 Add full path to line: ```driver = webdriver.Chrome("path-goes-here:/chromedriver", options=chromeOpts)```  
 or add location of webdriver to PATH 
-
-
-Replace username/password under Amazon credentials.  
+  
 Uncomment and add Twilio configuration to recieve texts when delivery slots are available.
 
 
