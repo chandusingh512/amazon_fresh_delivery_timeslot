@@ -41,10 +41,10 @@ def driverWait(driver, findType, selector):
     while True:
         if findType == 'css':
             try: driver.find_element_by_css_selector(selector).click(); break
-            except NoSuchElementException: driver.implicitly_wait(0.1)
+            except NoSuchElementException: driver.implicitly_wait(0.2)
         elif findType == 'name':
             try: driver.find_element_by_name(selector).click(); break
-            except NoSuchElementException: driver.implicitly_wait(0.1)
+            except NoSuchElementException: driver.implicitly_wait(0.2)
 
 def navigateToShipOptions(driver):
     driver.get('https://www.amazon.com/gp/sign-in.html')
