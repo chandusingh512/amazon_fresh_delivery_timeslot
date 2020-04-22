@@ -85,6 +85,7 @@ def findSlots(driver):
                     for i in range(3):
                         print('\a')
                         time.sleep(1)
+                    time.sleep(1800)
                     driver.quit()
                     return
         except AttributeError: pass
